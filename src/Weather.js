@@ -33,7 +33,7 @@ export default function Weather() {
           <input
             onChange={updateCity}
             type="search"
-            placeholder="Type the city's name please..."
+            placeholder="Type the city's name"
             className="form-control"
             autoComplete="off"
           />
@@ -111,17 +111,18 @@ export default function Weather() {
       <div className="container">
         <div className="weather-app-wrapper">
           <div className="weather-app">{form}</div>
-
-          <small>
-            <a
-              href="https://github.com/Danaee-Ghazal/weather-react"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open-source code
-            </a>
-            by Ghazal Danaee
-          </small>
+          <footer>
+            <p>
+              This project was coded by Ghazal Danaee and is{" "}
+              <a
+                href="https://github.com/Danaee-Ghazal/weather-react"
+                target="_blank"
+                rel="noreferrer"
+              >
+                open-sourced
+              </a>
+            </p>
+          </footer>
         </div>
       </div>
     );
