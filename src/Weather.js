@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Weather() {
   const [city, setCity] = useState("");
@@ -52,7 +53,7 @@ export default function Weather() {
     return (
       <div className="container">
         <div className="weather-app-wrapper">
-          <div className="weather-app">
+          <div className="weather-app ">
             {form}
             <div className="overview">
               <h1>{city}</h1>
@@ -66,16 +67,18 @@ export default function Weather() {
             <div className="row">
               <div className="col-6">
                 <div className="clearfix">
-                  <img
-                    src={weather.icon}
-                    alt={weather.description}
-                    className="float-left"
-                  />
                   <div className="float-left">
-                    <strong>{weather.temperature}</strong>
+                    <strong className="ml-5">{weather.temperature}</strong>
                     <span className="units"> °C </span>
                   </div>
                 </div>
+                <img
+                  src={weather.icon}
+                  alt={weather.description}
+                  className="float-left"
+                />
+                <br />
+                <div>{weather.description}</div>
               </div>
               <div className="col-6">
                 <ul>
@@ -90,19 +93,9 @@ export default function Weather() {
                 </ul>
               </div>
             </div>
-            <div className="weather-forecast">{weather.description}</div>
-          </div>
 
-          <small>
-            <a
-              href="https://github.com/Danaee-Ghazal/weather-react"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open-source code
-            </a>
-            by Ghazal Danaee
-          </small>
+            <div className="weather-forecast"></div>
+          </div>
         </div>
       </div>
     );
@@ -111,18 +104,6 @@ export default function Weather() {
       <div className="container">
         <div className="weather-app-wrapper">
           <div className="weather-app">{form}</div>
-          <footer>
-            <p>
-              This project was coded by Ghazal Danaee and is{" "}
-              <a
-                href="https://github.com/Danaee-Ghazal/weather-react"
-                target="_blank"
-                rel="noreferrer"
-              >
-                open-sourced
-              </a>
-            </p>
-          </footer>
         </div>
       </div>
     );
