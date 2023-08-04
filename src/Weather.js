@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 export default function Weather() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({});
@@ -10,6 +11,8 @@ export default function Weather() {
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
+
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
   }
   function handleSubmit(event) {
@@ -59,8 +62,12 @@ export default function Weather() {
           </div>
           <div className="row">
             <div className="col-6">
-              <div className="clearfix weather-temperature">
-                <img src="" alt="Clear" className="float-left" />
+              <div className="clearfix">
+                <img
+                  src={weather.icon}
+                  alt={weather.description}
+                  className="float-left"
+                />
                 <div className="float-left">
                   <strong>{weather.temperature}</strong>
                   <span className="units"> °C </span>
@@ -82,6 +89,7 @@ export default function Weather() {
           </div>
           <div className="weather-forecast">{weather.description}</div>
         </div>
+
         <small>
           <a
             href="https://github.com/Danaee-Ghazal/weather-react"

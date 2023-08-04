@@ -67,9 +67,11 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
-
+.container {
+  max-width: 960px;
+}
 .weather-app-wrapper {
-  max-width: 600px;
+  max-width: 800px;
   margin: 30px auto;
 
   background-color: bisque;
