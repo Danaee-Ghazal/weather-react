@@ -84,7 +84,7 @@ export default function Weather() {
         </div>
         <small>
           <a
-            href="https://github.com/Danaee-Ghazal/vanilla-weather-app/tree/main"
+            href="https://github.com/Danaee-Ghazal/weather-react"
             target="_blank"
             rel="noreferrer"
           >
