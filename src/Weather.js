@@ -3,15 +3,36 @@ import axios from "axios";
 export default function Weather() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({});
+  function updateWeather(response) {
+    console.log(response);
+    setWeather({
+      temperature: Math.round(response.data.main.temp),
+      description: response.data.weather[0].description,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+    });
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(updateWeather);
+  }
+  function updateCity(event) {
+    event.preventDefault();
+    setCity(event.target.value);
+  }
 
   return (
     <div className="container">
       <div className="weather-app-wrapper">
         <div className="weather-app">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-9">
                 <input
+                  onChange={updateCity}
                   type="search"
                   placeholder="Type the city's name please..."
                   className="form-control"
@@ -28,7 +49,7 @@ export default function Weather() {
             </div>
           </form>
           <div className="overview">
-            <h1></h1>
+            <h1>{city}</h1>
             <ul>
               <li>
                 Last updated: <span></span>
@@ -41,7 +62,7 @@ export default function Weather() {
               <div className="clearfix weather-temperature">
                 <img src="" alt="Clear" className="float-left" />
                 <div className="float-left">
-                  <strong></strong>
+                  <strong>{weather.temperature}</strong>
                   <span className="units"> °C </span>
                 </div>
               </div>
@@ -49,20 +70,23 @@ export default function Weather() {
             <div className="col-6">
               <ul>
                 <li>
-                  Humidity: <span></span>%
+                  Humidity:
+                  <span>{weather.humidity}</span>%
                 </li>
                 <li>
-                  Wind: <span></span> km/h
+                  Wind:
+                  <span>{weather.wind}</span> km/h
                 </li>
               </ul>
             </div>
           </div>
-          <div className="weather-forecast"></div>
+          <div className="weather-forecast">{weather.description}</div>
         </div>
         <small>
           <a
             href="https://github.com/Danaee-Ghazal/vanilla-weather-app/tree/main"
             target="_blank"
+            rel="noreferrer"
           >
             Open-source code
           </a>
