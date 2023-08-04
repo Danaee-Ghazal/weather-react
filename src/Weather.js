@@ -26,81 +26,104 @@ export default function Weather() {
     event.preventDefault();
     setCity(event.target.value);
   }
-
-  return (
-    <div className="container">
-      <div className="weather-app-wrapper">
-        <div className="weather-app">
-          <form onSubmit={handleSubmit}>
-            <div className="row">
-              <div className="col-9">
-                <input
-                  onChange={updateCity}
-                  type="search"
-                  placeholder="Type the city's name please..."
-                  className="form-control"
-                  autoComplete="off"
-                />
-              </div>
-              <div className="col-3">
-                <input
-                  type="submit"
-                  value="Search"
-                  className="btn btn-warning w-100"
-                />
-              </div>
-            </div>
-          </form>
-          <div className="overview">
-            <h1>{city}</h1>
-            <ul>
-              <li>
-                Last updated: <span></span>
-              </li>
-              <li></li>
-            </ul>
-          </div>
-          <div className="row">
-            <div className="col-6">
-              <div className="clearfix">
-                <img
-                  src={weather.icon}
-                  alt={weather.description}
-                  className="float-left"
-                />
-                <div className="float-left">
-                  <strong>{weather.temperature}</strong>
-                  <span className="units"> °C </span>
-                </div>
-              </div>
-            </div>
-            <div className="col-6">
+  let form = (
+    <form onSubmit={handleSubmit}>
+      <div className="row">
+        <div className="col-9">
+          <input
+            onChange={updateCity}
+            type="search"
+            placeholder="Type the city's name please..."
+            className="form-control"
+            autoComplete="off"
+          />
+        </div>
+        <div className="col-3">
+          <input
+            type="submit"
+            value="Search"
+            className="btn btn-warning w-100"
+          />
+        </div>
+      </div>
+    </form>
+  );
+  if (weather.temperature) {
+    return (
+      <div className="container">
+        <div className="weather-app-wrapper">
+          <div className="weather-app">
+            {form}
+            <div className="overview">
+              <h1>{city}</h1>
               <ul>
                 <li>
-                  Humidity:
-                  <span>{weather.humidity}</span>%
+                  Last updated: <span></span>
                 </li>
-                <li>
-                  Wind:
-                  <span>{weather.wind}</span> km/h
-                </li>
+                <li></li>
               </ul>
             </div>
+            <div className="row">
+              <div className="col-6">
+                <div className="clearfix">
+                  <img
+                    src={weather.icon}
+                    alt={weather.description}
+                    className="float-left"
+                  />
+                  <div className="float-left">
+                    <strong>{weather.temperature}</strong>
+                    <span className="units"> °C </span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-6">
+                <ul>
+                  <li>
+                    Humidity:
+                    <span>{weather.humidity}</span>%
+                  </li>
+                  <li>
+                    Wind:
+                    <span>{weather.wind}</span> km/h
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="weather-forecast">{weather.description}</div>
           </div>
-          <div className="weather-forecast">{weather.description}</div>
-        </div>
 
-        <small>
-          <a
-            href="https://github.com/Danaee-Ghazal/weather-react"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open-source code
-          </a>
-          by Ghazal Danaee
-        </small>
+          <small>
+            <a
+              href="https://github.com/Danaee-Ghazal/weather-react"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open-source code
+            </a>
+            by Ghazal Danaee
+          </small>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="container">
+        <div className="weather-app-wrapper">
+          <div className="weather-app">{form}</div>
+
+          <small>
+            <a
+              href="https://github.com/Danaee-Ghazal/weather-react"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open-source code
+            </a>
+            by Ghazal Danaee
+          </small>
+        </div>
+      </div>
+    );
+  }
 }
