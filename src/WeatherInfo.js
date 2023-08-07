@@ -17,7 +17,7 @@ export default function WeatherInfo(props) {
         <div className="col-6">
           <div className="clearfix">
             <div className="float-left">
-              <WeatherIcon code={props.info.icon} size={50} />
+              <WeatherIcon code={props.info.icon} size={52} />
             </div>
 
             <div className="float-left">
